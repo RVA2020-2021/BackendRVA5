@@ -37,12 +37,12 @@ public class Porudzbina implements Serializable {
 	private Boolean placeno;
 
 	//bi-directional many-to-one association to Dobavljac
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.REMOVE)
 	@JoinColumn(name="dobavljac")
 	private Dobavljac dobavljac;
 
 	//bi-directional many-to-one association to StavkaPorudzbine
-	@OneToMany(mappedBy="porudzbina")
+	@OneToMany(mappedBy="porudzbina", cascade = {CascadeType.DETACH, CascadeType.REMOVE})
 	@JsonIgnore
 	private List<StavkaPorudzbine> stavkaPorudzbines;
 
